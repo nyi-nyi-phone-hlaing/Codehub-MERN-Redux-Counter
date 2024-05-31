@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { counterActions } from "../store";
+import { counterActions } from "../store/counterReducer";
 
 const Counter = () => {
-  const counter = useSelector((state) => state.counter);
-  const isShow = useSelector((state) => state.isShow);
+  const counter = useSelector((state) => state.counter.counter);
+  const isShow = useSelector((state) => state.counter.isShow);
   const dispatch = useDispatch();
   const increaseHandler = () => {
     dispatch(counterActions.increase());
@@ -20,10 +20,12 @@ const Counter = () => {
   };
 
   return (
-    <section className='p-2 bg-white rounded-md shadow-lg'>
-      <h1 className='text-center mb-2 font-bold text-lg'>Redux Counter</h1>
+    <section className='w-2/5 p-2 bg-white rounded-md shadow-lg mb-2'>
+      <h1 className='text-center mb-2 font-bold text-lg'>
+        Your current score is
+      </h1>
       {isShow && <h3 className='text-center font-bold text-2xl'>{counter}</h3>}
-      <div className='flex items-center justify-center gap-2 mt-3 '>
+      <div className='flex items-center justify-center gap-2 mt-3 flex-wrap'>
         {isShow && (
           <>
             <button
